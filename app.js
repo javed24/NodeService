@@ -15,10 +15,10 @@ handleAPICall = (url1,url2, callback) => {
     inventoryArray = response.data.inventory.slice();
     axios.get(url2)
     .then(function (response) {
-        if(response.data.product){
+        if(response.data.product){ //handles the call to /products/xyz
           productsArray = response.data.product.slice();
         }
-        else{
+        else{ //handles the call to /products, mapping over the response because it does not have a key to invoke, unlike /inventory
           response.data.map((item) => {productsArray.push(item)})
         }
         callback(inventoryArray, productsArray);
